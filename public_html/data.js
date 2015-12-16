@@ -88,6 +88,7 @@ function initializeCharts()
 {
     
     initializeCharts.load=Object.keys(initializeCharts.allData);
+//    initializeCharts.load=["F-DS-1"];
     drawChart(initializeCharts.allData[initializeCharts.load.shift()]);
     
 }
@@ -115,7 +116,8 @@ function drawChart(input)
                 {
                     for(var j=0; j<chartData[i].length; j++)
                     {
-                        chartData[i][j]=parseFloatNan0(chartData[i][j]);
+                        if(j!==0)
+                            chartData[i][j]=parseFloatNan0(chartData[i][j]);
                     }
                 }
                 chartData.unshift(fields);
@@ -127,12 +129,14 @@ function drawChart(input)
                     },
                     bars: 'vertical',
                     height: 600,
+                    legend: { position: 'top', alignment: 'start' },
                     hAxis: {
                         title: this.xTitle,
                         format: ''
                     },
                     vAxis: {
-                        title: this.yTitle
+                        title: this.yTitle,
+                        format: 'decimal'
                     }
                 };
                 
